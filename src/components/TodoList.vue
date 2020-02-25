@@ -84,9 +84,10 @@ import {
   defineComponent,
   ref,
   computed,
+  watch,
   Ref,
 } from '@vue/composition-api';
-import TODOS from '../utils/todos';
+import todoStorage from '../utils/storage';
 import TodoItem from './TodoItem.vue';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -124,7 +125,7 @@ type TodoItem = {
 }
 
 function useTodoList (view: Ref<View>) {
-  const todos = ref([...TODOS]);
+  const todos = ref([...todoStorage.fetch()]);
   const activeTodos = computed(() => todos.value.filter((todo: TodoItem): boolean => !todo.done));
   const completedTodos = computed(() => todos.value.filter((todo: TodoItem): boolean => todo.done));
 
@@ -145,6 +146,10 @@ function useTodoList (view: Ref<View>) {
         return todos.value;
     }
   });
+
+  watch(todos, (newVal) => {
+    todoStorage.save(newVal);
+  }, { deep: true });
 
   return {
     todos,
