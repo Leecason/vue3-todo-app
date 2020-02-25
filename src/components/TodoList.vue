@@ -86,6 +86,7 @@ import {
   computed,
   Ref,
 } from '@vue/composition-api';
+import TODOS from '../utils/todos';
 import TodoItem from './TodoItem.vue';
 // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
 // @ts-ignore
@@ -123,7 +124,7 @@ type TodoItem = {
 }
 
 function useTodoList (view: Ref<View>) {
-  const todos = ref([]);
+  const todos = ref([...TODOS]);
   const activeTodos = computed(() => todos.value.filter((todo: TodoItem): boolean => !todo.done));
   const completedTodos = computed(() => todos.value.filter((todo: TodoItem): boolean => todo.done));
 
