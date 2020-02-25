@@ -9,7 +9,14 @@
     </v-app-bar>
 
     <v-content>
-      <HelloWorld/>
+      <v-container fluid>
+        <v-row
+          align="center"
+          justify="center"
+        >
+          <todo-list></todo-list>
+        </v-row>
+      </v-container>
     </v-content>
 
     <v-footer
@@ -25,17 +32,13 @@
 
 <script lang="ts">
 import Vue from 'vue';
-import HelloWorld from './components/HelloWorld.vue';
+import TodoList from './components/TodoList.vue';
 
 export default Vue.extend({
   name: 'App',
 
   components: {
-    HelloWorld
+    TodoList,
   },
-
-  data: () => ({
-    //
-  })
 });
 </script>
