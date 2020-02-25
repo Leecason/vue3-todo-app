@@ -80,6 +80,9 @@
 </template>
 
 <script lang="ts">
+// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
+// @ts-ignore
+import shortid from 'shortid';
 import {
   defineComponent,
   ref,
@@ -88,40 +91,14 @@ import {
   Ref,
 } from '@vue/composition-api';
 import todoStorage from '../utils/storage';
-import TodoItem from './TodoItem.vue';
-// eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-// @ts-ignore
-import shortid from 'shortid';
-
-enum View {
-  all,
-  active,
-  completed,
-};
-
-enum Colors {
-  red,
-  pink,
-  purple,
-  indigo,
-  blue,
-  cyan,
-  amber,
-  orange,
-};
+import TodoItemComponent from './TodoItem.vue';
+import { TodoItem, View, Colors } from '../index';
 
 function getRandomColor (): string {
   const len = (Object.keys(Colors).length / 2) - 1;
   const num = (Math.floor(Math.random() * len) + 0);
 
   return Colors[num];
-}
-
-type TodoItem = {
-  id: string;
-  text: string;
-  done: boolean;
-  color: string;
 }
 
 function useTodoList (view: Ref<View>) {
@@ -196,7 +173,7 @@ function useUpdateTodo (todos: Ref<TodoItem[]>) {
 
 export default defineComponent({
   components: {
-    TodoItem,
+    'todo-item': TodoItemComponent,
   },
 
   setup () {

@@ -1,4 +1,5 @@
 import TODOS from './todos';
+import { TodoItem } from '../index';
 
 const STORAGE_KEY = 'vue3-todos';
 
@@ -12,7 +13,7 @@ export default {
       return TODOS;
     }
   },
-  save: function (todos) {
+  save: function (todos: TodoItem[]) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   },
 };
