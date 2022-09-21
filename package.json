@@ -12,7 +12,7 @@
     "core-js": "^3.6.4",
     "shortid": "^2.2.15",
     "vue": "^2.6.11",
-    "vuetify": "^2.2.14"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@mdi/font": "^4.9.95",
